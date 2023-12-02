@@ -3,6 +3,8 @@ import fs from "fs"
 import path, { dirname } from 'path'
 import {join, resolve} from 'path'
 import { fileURLToPath } from 'url'
+import { getNikeShoe } from './out/data/nike.js'
+
 const PORT = 3000
 
 
@@ -31,8 +33,22 @@ app.get("/", (req, res)=>{
     })
 })
 
-app.get("/out/client/index.js", (req, res)=>{
-    const filePath = "/out/client/index.js" 
+
+app.get("/node_modules/axios/index.cjs ", (req, res)=>{
+    const filePath = "/node_modules/axios/index.js " 
+    res.sendFile(filePath, options, (err)=>{
+        if(err){
+            console.log(err)
+            next(err)
+        }
+        else{
+            console.log("sent: "+filePath)
+        }
+    })
+})
+
+app.get("/index.js", (req, res)=>{
+    const filePath = "/out/client/scripts/index.js" 
     res.sendFile(filePath, options, (err)=>{
         if(err){
             next(err)
@@ -43,10 +59,13 @@ app.get("/out/client/index.js", (req, res)=>{
     })
 })
 
-app.get("/shoe/:sku", (req, res)=>{
-    let sku = req.params.sku
+app.get("/shoe", (req, res)=>{
+    const sku = req.query.sku
     console.log("Sku: "+sku)
-    res.send({data: "something"})
+    // DV0788-001
+    const nikeShoe = getNikeShoe(sku)
+
+    res.send(JSON.stringify(nikeShoe))
 })
 app.listen(3000, ()=>{
     console.log(`listening at port ${3000}: localhost:${3000}`) 

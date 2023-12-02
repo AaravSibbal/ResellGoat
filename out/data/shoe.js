@@ -34,3 +34,4 @@ export class Shoe {
         this.priceAtAlias = newPrice;
     }
 }
+//# sourceMappingURL=shoe.js.map

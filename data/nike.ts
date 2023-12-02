@@ -53,7 +53,7 @@ export async function getNikeShoe(SKU: string){
     return newNikeShoe;
 }
 
-getNikeShoe("DZ4514-001")
+// getNikeShoe("DZ4514-001")
 
 
 

@@ -22,6 +22,7 @@ class user {
             let nikeShoe = yield getNikeShoe(SKU);
             shoe.setPriceForNike(nikeShoe.price);
             shoe.setName(nikeShoe.name);
+            console.log("b");
             // TODO: function that gets stockx shoe price  
             // TODO: function that gets alias shoe price
             this.shoeListBySKU.set(SKU, shoe);
@@ -37,3 +38,4 @@ class user {
         return null;
     }
 }
+//# sourceMappingURL=user.js.map
