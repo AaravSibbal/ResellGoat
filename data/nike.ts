@@ -16,7 +16,7 @@ export type NikeShoeType = {
 }
 
 export async function getNikeShoe(SKU: string){
-    const browser = await puppeteer.launch({headless:false})
+    const browser = await puppeteer.launch({headless:'new'})
     const page = await browser.newPage()
 
     await page.goto("https://www.nike.com/ca/")

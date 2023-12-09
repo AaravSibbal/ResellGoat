@@ -59,12 +59,14 @@ app.get("/index.js", (req, res)=>{
     })
 })
 
-app.get("/shoe", (req, res)=>{
+app.get("/shoe", async (req, res)=>{
     const sku = req.query.sku
     console.log("Sku: "+sku)
     // DV0788-001
-    const nikeShoe = getNikeShoe(sku)
+    const nikeShoe = await  getNikeShoe(sku)
 
+    console.log("Sent Shoe: ")
+    console.log(nikeShoe)
     res.send(JSON.stringify(nikeShoe))
 })
 app.listen(3000, ()=>{

@@ -17,7 +17,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 import puppeteer from "puppeteer";
 export function getNikeShoe(SKU) {
     return __awaiter(this, void 0, void 0, function* () {
-        const browser = yield puppeteer.launch({ headless: false });
+        const browser = yield puppeteer.launch({ headless: 'new' });
         const page = yield browser.newPage();
         yield page.goto("https://www.nike.com/ca/");
         /**
@@ -49,5 +49,5 @@ export function getNikeShoe(SKU) {
         return newNikeShoe;
     });
 }
-getNikeShoe("DZ4514-001");
+// getNikeShoe("DZ4514-001")
 //# sourceMappingURL=nike.js.map

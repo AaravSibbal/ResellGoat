@@ -1,3 +1,5 @@
+import { NikeShoeType } from "../../data/nike";
+
 // @ts-ignore
 const axios: any = window.axios;
 // const axios = require('axios');
@@ -18,13 +20,13 @@ document.addEventListener('keypress', (event)=>{
 })
 
 
-function createURL(text: string): URL{
-    let url = new URL("localhost:3000")
+// function createURL(text: string): URL{
+//     let url = new URL("localhost:3000")
 
-    url.searchParams.set("sku", text)
+//     url.searchParams.set("sku", text)
     
-    return url
-}
+//     return url
+// }
 
 function skuCheck(sku: string|undefined): string|null{
 
@@ -52,22 +54,25 @@ async function submit():Promise<void>{
         return
     }
     
-    let url: URL = createURL(checkedSKU)
-    await axios.get(`/shoe`, {
+    let data = await axios.get(`/shoe`, {
         params: {
             sku: checkedSKU
         }
     })
     .then(function(response: any){
         // handle success
-        console.log(response)
+        return response.data
+
+
     })
     .catch(function(error: any){
         result!.innerText = "There is an error with the server, Please try again later"
         console.log(error)
     })
-    console.log("submit button was clicked") 
-    console.log("text field input: "+skuText?.value)
+
+    result!.innerText = `name = ${data.name} \nprice = ${data.price}`
+    // console.log("submit button was clicked") 
+    // console.log("text field input: "+skuText?.value)
 }
 
 async function fetchData() {
