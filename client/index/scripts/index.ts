@@ -1,10 +1,9 @@
-import { NikeShoeType } from "../../data/nike";
 
 // @ts-ignore
 const axios: any = window.axios;
 // const axios = require('axios');
 const submitBtn:HTMLButtonElement|null = document.getElementById("submit-btn") as HTMLButtonElement
-const skuText:HTMLTextAreaElement|null = document.getElementById("sku-input")as HTMLTextAreaElement
+const skuText:HTMLTextAreaElement|null = document.getElementById("sku-input") as HTMLTextAreaElement
 const result:HTMLParagraphElement|null = document.getElementById("result") as HTMLParagraphElement
 
 submitBtn.addEventListener("click", ()=>{

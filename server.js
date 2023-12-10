@@ -22,7 +22,7 @@ app.use(express.static("node_modules"))
 app.use(express.static("out"))
 
 app.get("/", (req, res)=>{
-    const filePath = "client/index.html" 
+    const filePath = "client/index/index.html" 
     res.sendFile(filePath, options, (err)=>{
         if(err){
             next(err)
@@ -34,21 +34,21 @@ app.get("/", (req, res)=>{
 })
 
 
-app.get("/node_modules/axios/index.cjs ", (req, res)=>{
-    const filePath = "/node_modules/axios/index.js " 
-    res.sendFile(filePath, options, (err)=>{
-        if(err){
-            console.log(err)
-            next(err)
-        }
-        else{
-            console.log("sent: "+filePath)
-        }
-    })
-})
+// app.get("/node_modules/axios/index.cjs ", (req, res)=>{
+//     const filePath = "/node_modules/axios/index.js " 
+//     res.sendFile(filePath, options, (err)=>{
+//         if(err){
+//             console.log(err)
+//             next(err)
+//         }
+//         else{
+//             console.log("sent: "+filePath)
+//         }
+//     })
+// })
 
 app.get("/index.js", (req, res)=>{
-    const filePath = "/out/client/scripts/index.js" 
+    const filePath = "/out/client/index/scripts/index.js" 
     res.sendFile(filePath, options, (err)=>{
         if(err){
             next(err)
@@ -68,6 +68,30 @@ app.get("/shoe", async (req, res)=>{
     console.log("Sent Shoe: ")
     console.log(nikeShoe)
     res.send(JSON.stringify(nikeShoe))
+})
+
+app.get("/signup", (req, res)=>{
+    const filePath = "client/signup/signup.html" 
+    res.sendFile(filePath, options, (err)=>{
+        if(err){
+            next(err)
+        }
+        else{
+            console.log("sent: "+filePath)
+        }
+    })
+})
+
+app.get("/signup.js", (req, res)=>{
+    const filePath = "out/client/signup/scripts/signup.js" 
+    res.sendFile(filePath, options, (err)=>{
+        if(err){
+            next(err)
+        }
+        else{
+            console.log("sent: "+filePath)
+        }
+    })
 })
 app.listen(3000, ()=>{
     console.log(`listening at port ${3000}: localhost:${3000}`) 

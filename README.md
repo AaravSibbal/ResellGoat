@@ -19,4 +19,4 @@ As of now I am focused on adding authentication I am planning to go with JWT as 
 
 
 ## Conclusion
-Reach out of anyone wants to help me out lol. Also dont use it yet feel free to fork it. 
+Feel free to reach out at aaravsibbal.15@gmail.com. Also dont use the website as is, yet feel free to fork it. 
