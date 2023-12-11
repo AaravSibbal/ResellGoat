@@ -39,7 +39,7 @@ function something(){
         email: emailInput.value,
         password: passwordInput.value
     }
-
+    console.log("This is the signup info before the post req: "+signupInfo)
     axios.post('/signup', signupInfo)
     .then(function (response: any){
         console.log("response: "+response.data)

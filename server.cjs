@@ -1,25 +1,24 @@
-import express from 'express'
-import fs from "fs"
-import path, { dirname } from 'path'
-import {join, resolve} from 'path'
-import { fileURLToPath } from 'url'
-import { getNikeShoe } from './out/data/nike.js'
-import pkg from 'body-parser';
-const { bodyParser} = pkg;
+const fs = require('fs')
+const hash = require('./auth/hash.cjs')
+const bodyParser = require('body-parser')
+const express = require('express')
 const PORT = 3000
+const path = require('path')
 
-const currentFileUrl = import.meta.url;
-const currentFilePath = fileURLToPath(currentFileUrl)
-const currentDir = resolve(dirname(currentFilePath))
+
+
+const currentFilePath = path.resolve(__filename);
+const currentDir = path.resolve(__dirname);
 
 const app = express();
 
 const options = {
-    root: join(currentDir)
+    root: path.join(currentDir)
 }
 
 app.use(express.static("node_modules"))
 app.use(express.static("out"))
+app.use(bodyParser.json())
 
 
 
@@ -83,7 +82,7 @@ app.get("/signup", (req, res)=>{
     })
 })
 
-app.post("/signup", (req, res)=>{
+app.post("/signup", bodyParser.json(),(req, res)=>{
     //TODO: please fix this so that req.body is no longer undefined
     const postData = req.body;
     
