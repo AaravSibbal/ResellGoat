@@ -4,9 +4,9 @@ import path, { dirname } from 'path'
 import {join, resolve} from 'path'
 import { fileURLToPath } from 'url'
 import { getNikeShoe } from './out/data/nike.js'
-
+import pkg from 'body-parser';
+const { bodyParser} = pkg;
 const PORT = 3000
-
 
 const currentFileUrl = import.meta.url;
 const currentFilePath = fileURLToPath(currentFileUrl)
@@ -21,6 +21,21 @@ const options = {
 app.use(express.static("node_modules"))
 app.use(express.static("out"))
 
+
+
+
+app.get("/auth/hash", (req, res)=>{
+    const filePath = "out/auth/hash.js" 
+    res.sendFile(filePath, options, (err)=>{
+        if(err){
+            next(err)
+        }
+        else{
+            console.log("sent: "+filePath)
+        }
+    })
+})
+
 app.get("/", (req, res)=>{
     const filePath = "client/index/index.html" 
     res.sendFile(filePath, options, (err)=>{
@@ -32,20 +47,6 @@ app.get("/", (req, res)=>{
         }
     })
 })
-
-
-// app.get("/node_modules/axios/index.cjs ", (req, res)=>{
-//     const filePath = "/node_modules/axios/index.js " 
-//     res.sendFile(filePath, options, (err)=>{
-//         if(err){
-//             console.log(err)
-//             next(err)
-//         }
-//         else{
-//             console.log("sent: "+filePath)
-//         }
-//     })
-// })
 
 app.get("/index.js", (req, res)=>{
     const filePath = "/out/client/index/scripts/index.js" 
@@ -80,6 +81,14 @@ app.get("/signup", (req, res)=>{
             console.log("sent: "+filePath)
         }
     })
+})
+
+app.post("/signup", (req, res)=>{
+    //TODO: please fix this so that req.body is no longer undefined
+    const postData = req.body;
+    
+    console.log("Requested data: "+postData)
+    res.send("success")
 })
 
 app.get("/signup.js", (req, res)=>{

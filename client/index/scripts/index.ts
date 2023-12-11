@@ -1,6 +1,7 @@
+import { Axios } from "axios";
 
 // @ts-ignore
-const axios: any = window.axios;
+const axios: Axios = document.axios;
 // const axios = require('axios');
 const submitBtn:HTMLButtonElement|null = document.getElementById("submit-btn") as HTMLButtonElement
 const skuText:HTMLTextAreaElement|null = document.getElementById("sku-input") as HTMLTextAreaElement

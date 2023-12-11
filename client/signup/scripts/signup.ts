@@ -1,12 +1,20 @@
-const firstName = document.getElementById("first-name") as HTMLInputElement
-const lastName = document.getElementById("last-name") as HTMLInputElement
-const email = document.getElementById("email") as HTMLInputElement
-const password = document.getElementById("password") as HTMLInputElement
+
+import { Axios } from "axios";
+// @ts-ignore
+const axios: Axios = window.axios;
+
+
+const firstNameInput = document.getElementById("first-name") as HTMLInputElement
+const lastNameInput = document.getElementById("last-name") as HTMLInputElement
+const emailInput = document.getElementById("email") as HTMLInputElement
+const passwordInput = document.getElementById("password") as HTMLInputElement
 const signupSubmitBtn = document.getElementById("signup-submit") as HTMLButtonElement
 const clientFuckUps = document.getElementById('client-fuckups') as HTMLParagraphElement
 const passRequirements = document.getElementById('pass-requirements') as HTMLParagraphElement
 const showPasswordElem = document.getElementById('show-password') as HTMLInputElement
-const inputArr: HTMLInputElement[] = [firstName, lastName, email, password]
+const inputArr: HTMLInputElement[] = [firstNameInput, lastNameInput, emailInput, passwordInput]
+
+
 signupSubmitBtn.addEventListener("click", ()=>{
     signupSubmit()
 })
@@ -17,17 +25,38 @@ showPasswordElem.addEventListener('click', ()=>{
 
 function showPassword(){
     if(showPasswordElem.checked){
-        password.type = "text"
+        passwordInput.type = "text"
     }
     else{
-        password.type = "password"
+        passwordInput.type = "password"
     }
+}
+
+function something(){
+    const signupInfo = {
+        firstName: firstNameInput.value,
+        lastName: lastNameInput.value,
+        email: emailInput.value,
+        password: passwordInput.value
+    }
+
+    axios.post('/signup', signupInfo)
+    .then(function (response: any){
+        console.log("response: "+response.data)
+        console.log('succeess')
+    })
+    .catch(function (error: any){
+        console.log(error)
+    })
+
+
 }
 
 
 function signupSubmit(){
     if(inputValidation()){
         console.log("this works")
+        something()
     }
     else{
         console.log("failed input")
@@ -83,8 +112,8 @@ function inputValidation(): boolean{
         }
         i++;    
     }
-    if(isStrongPassword(password.value) !== "Good"){
-        passRequirements.innerText = isStrongPassword(password.value)
+    if(isStrongPassword(passwordInput.value) !== "Good"){
+        passRequirements.innerText = isStrongPassword(passwordInput.value)
         return false
     }
     else{

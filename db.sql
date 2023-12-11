@@ -6,3 +6,9 @@ CREATE TABLE IF NOT EXISTS users (
     email VARCHAR(150),
     pass VARCHAR(72)
 );
+
+
+
+
+
+
