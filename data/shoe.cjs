@@ -1,11 +1,11 @@
-export class Shoe{
-    SKU: string;
-    name: string|null;
-    priceAtNike: string|null;
-    priceAtStockX: string|null;
-    priceAtAlias: string|null
+class Shoe{
+    SKU;
+    name;
+    priceAtNike;
+    priceAtStockX;
+    priceAtAlias
     
-    constructor(ISKU: string){
+    constructor(ISKU ){
         this.SKU = ISKU;
         this.name = null;
         this.priceAtNike = null;
@@ -13,36 +13,36 @@ export class Shoe{
         this.priceAtAlias = null
     }
 
-    getName():string|null{
+    getName(){
         return this.name
     }
 
-    getPriceAtNike():string|null{
+    getPriceAtNike(){
         return this.priceAtNike;
     }
-    getPriceAtStockX():string|null{
+    getPriceAtStockX(){
         return this.priceAtStockX
     }
-    getPriceAtAlias():string|null{
+    getPriceAtAlias(){
         return this.priceAtAlias
     }
-    getSKU():string{
+    getSKU(){
         return this.SKU;
     }
-    setName(newName:string):void{
+    setName(newName){
         this.name = newName
     }
-    setPriceForNike(newPrice:string):void{
+    setPriceForNike(newPrice){
         this.priceAtNike = newPrice
     }
-    setPriceForStockX(newPrice:string):void{
+    setPriceForStockX(newPrice){
         this.priceAtStockX = newPrice;
     }
-    setPriceForAlias(newPrice:string):void{
+    setPriceForAlias(newPrice){
         this.priceAtAlias = newPrice;
     }
+}
 
-
-
-
+module.exports = {
+    Shoe
 }

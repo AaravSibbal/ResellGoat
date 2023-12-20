@@ -7,15 +7,12 @@
  * the way we can check for the size availibility in the nike
  * is that we can see of the class is called class or disabled class inside the grid
  */
-import puppeteer from "puppeteer";
-import { Shoe } from "./shoe";
 
-export type NikeShoeType = {
-    name: string;
-    price: string;
-}
+const puppeteer = require('puppeteer')
 
-export async function getNikeShoe(SKU: string){
+
+
+async function getNikeShoe(SKU){
     const browser = await puppeteer.launch({headless:'new'})
     const page = await browser.newPage()
 
@@ -46,15 +43,17 @@ export async function getNikeShoe(SKU: string){
 
     console.log(JSON.stringify(shoeData, null, 2));
     setTimeout(async ()=>await browser.close(), 5000)
-    const newNikeShoe: NikeShoeType = {
+    const newNikeShoe = {
         name: shoeData.name,
         price: shoeData.price
     };
     return newNikeShoe;
 }
 
-// getNikeShoe("DZ4514-001")
 
+module.exports = {
+    getNikeShoe
+}
 
 
 
